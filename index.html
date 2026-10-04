@@ -3,6 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        try {
+          var nativeFetch = typeof window !== 'undefined' && window.fetch ? window.fetch.bind(window) : null;
+          var customFetch = null;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return customFetch || nativeFetch;
+            },
+            set: function(fn) {
+              customFetch = fn;
+            },
+            configurable: true,
+            enumerable: true,
+          });
+        } catch (e) {
+          try {
+            var protoFetch = typeof Window !== 'undefined' && Window.prototype && Window.prototype.fetch ? Window.prototype.fetch.bind(window) : null;
+            var customProto = null;
+            Object.defineProperty(Window.prototype, 'fetch', {
+              get: function() {
+                return customProto || protoFetch;
+              },
+              set: function(fn) {
+                customProto = fn;
+              },
+              configurable: true,
+              enumerable: true,
+            });
+          } catch (e2) {}
+        }
+      })();
+    </script>
     <title>ROUNAK — Kinetic Love Canvas</title>
     <meta name="description" content="An immersive dark canvas cinematic experience where R O U N A K is typed in bold, drawn over in radiant light by two hands forming a heart, vibrating with passion and dissolving into stardust." />
     <meta property="og:title" content="ROUNAK — Kinetic Love Canvas" />
