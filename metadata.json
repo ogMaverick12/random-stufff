@@ -1,0 +1,6 @@
+{
+  "name": "ROUNAK — Kinetic Love Canvas",
+  "description": "An immersive dark canvas cinematic experience where R O U N A K is typed in bold, drawn over in radiant light by two hands forming a heart, vibrating with passion and dissolving into stardust.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
